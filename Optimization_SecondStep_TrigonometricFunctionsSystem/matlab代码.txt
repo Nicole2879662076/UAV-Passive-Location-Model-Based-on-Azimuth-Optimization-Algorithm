@@ -1,0 +1,19 @@
+%部分的执行过程
+
+for i=1:100
+tmp1=step1output(:,i)
+tmp2=step2output(:,i)
+[gamma1,beta1]=cal_1(tmp2);
+global gamma1 beta1 FY41 FY42 FY51 FY52;
+[gamma1,beta1]=cal_1(tmp2);
+FY41=tmp1(1);
+FY42=tmp1(2);
+FY51=tmp1(3);
+FY52=tmp1(4);
+global gamma1 beta1 FY41 FY42 FY51 FY52;
+start1=[100;240];
+upp1=[115;241];
+low1=[85;239];
+[x1,y1]=fmincon('fun3',start1,[],[],[],[],low1,upp1,'fun4');
+step3output=[step3output x1];
+end
